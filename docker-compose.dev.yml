@@ -1,0 +1,39 @@
+version: "3.8" # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  cook20_ui: 
+    build: 
+      context: ./ui
+      dockerfile: Dockerfile.dev
+    container_name: cook20_ui
+    volumes:
+      - ./ui:/ui
+      - /ui/node_modules
+    ports:
+      - "4220:3000" 
+      - "49153:49153"
+    environment:
+      - NODE_ENV=dev
+    networks:
+      - default 
+
+  cook20_nginx: 
+    build: loadbalancer 
+    container_name: cook20_nginx
+#    restart: always
+    ports:
+      - "8020:80" 
+    networks:
+      - default 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://cook20_ui:3000/"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      - cook20_ui
+
+networks:
+  default:
