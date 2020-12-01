@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import './mvp.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App  message='Planting Carrot!' />
   </React.StrictMode>,
   document.getElementById('root')
 );
