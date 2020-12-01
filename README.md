@@ -39,6 +39,8 @@ https://github.com/maximilianou/weekly20/commit/04bef818113414125d38774708051f3e
 
 #### step-3
 
+https://github.com/maximilianou/weekly20/commit/af722cf39046982c7da7cb3c9536615fc6438132
+
 ```
 root@instrument:~# apt -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 
@@ -74,9 +76,9 @@ curl http://cook20_ui:3000/
 
 ### Typescript - React - docker-compose - nginx loadbalancer attending in port 8020.
 
- - Redirecting internally ( http://cook20_ui:3000 )
- - to ui in port 4220 externally (http://localhost:4220)
- - finally, http://localhost:8020 nginx attending http
+ - Redirecting internally inside of the running containers ( http://cook20_ui:3000 )
+ - Looking directly ui in port 4220, externally outside the running containers (http://localhost:4220)
+ - finally http://localhost:8020 nginx attending http.
 
 ```
 maximilianou@instrument:~/projects/weekly20$ docker-compose -f docker-compose.dev.yml up --build
@@ -86,6 +88,9 @@ make test
 
 
 #### step-4
+
+REFERENCE: https://dev.to/rmiyazaki6499/deploying-a-production-ready-react-express-app-on-aws-62m
+
 
 ```
 
