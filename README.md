@@ -87,11 +87,117 @@ make test
 ```
 
 
+
 #### step-4
+
+https://github.com/maximilianou/weekly20/commit/b9cc74899984e746463befe1cb53ae91fc2fb7b8
+
+
+REFERENCE: https://github.com/piotrwitek/react-redux-typescript-guide
+
+```tsx
+// index.tsx
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import './mvp.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+ReactDOM.render(
+  <React.StrictMode>
+    <App  message='Planting Carrot!' />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+reportWebVitals(console.log);
+```
+
+```tsx
+// App.test.tsx
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import App from './App';
+const contentMessage : string = 'Clean React';
+test('renders learn react link', () => {
+  render(<App message={contentMessage}/>);
+  const linkElement = screen.getByText(/Clean React/i);
+  expect(linkElement).toBeInTheDocument();
+});
+```
+
+```tsx
+// App.tsx
+import React from 'react';
+import Counter from './comp/Counter';
+type AppProps = { message: string };
+const App: React.FC<AppProps> = 
+        ( { message }: AppProps ) =>  
+          <>
+             <section>{message}</section>
+             <article><Counter  /></article>
+          </>;
+
+export default App;
+```
+```tsx
+import * as React from 'react';
+type CounterState = { count: number }
+type ActionType = 
+                | { type: 'increment', payload: number}
+                | { type: 'decrement', payload: number}
+const initialState: CounterState = {count: 0};
+const reducer = (state: CounterState, action: ActionType): CounterState => {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + action.payload};
+    case 'decrement':
+      return {count: state.count - action.payload};
+    default:
+      throw new Error();
+  }
+}
+const Counter:React.FC = () => {
+  const [state, dispatch] = React.useReducer(reducer, initialState);
+  return (
+    <>
+        <p>Count: {state.count}</p>
+        <button onClick={() => dispatch({type: 'decrement', payload: 5})}>-</button>
+        <button onClick={() => dispatch({type: 'increment', payload: 5})}>+</button>
+    </>
+  );
+}
+export default Counter;
+```
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "noEmit": true
+  },
+  "include": [
+    "src"
+  ]
+}
+```
+
+#### step-5
 
 REFERENCE: https://dev.to/rmiyazaki6499/deploying-a-production-ready-react-express-app-on-aws-62m
 
-
-```
-
-```
