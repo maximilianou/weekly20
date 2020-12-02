@@ -1,5 +1,10 @@
 # weekly20
+
+#### step-1
+##### Makefile, the tool that make me think like if i were documenting/scripting/automating steps
+
 typescript
+
 
 ```
 npm install -g create-react-app
@@ -33,11 +38,13 @@ ui:
 ```
 
 #### step-2 
+##### Create React App Typescript
 
 https://github.com/maximilianou/weekly20/commit/04bef818113414125d38774708051f3e985a7878
 
 
 #### step-3
+###### Dockerize Environment, using docker-compose and Makefile to centrilize commands
 
 https://github.com/maximilianou/weekly20/commit/af722cf39046982c7da7cb3c9536615fc6438132
 
@@ -89,6 +96,7 @@ make test
 
 
 #### step-4
+###### Build a React Component in Typescript
 
 https://github.com/maximilianou/weekly20/commit/b9cc74899984e746463befe1cb53ae91fc2fb7b8
 
