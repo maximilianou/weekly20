@@ -1,6 +1,6 @@
 # weekly20
 
-#### step-1
+## step-1
 ##### Makefile, the tool that make me think like if i were documenting/scripting/automating steps
 
 typescript
@@ -37,14 +37,14 @@ ui:
 
 ```
 
-#### step-2 
+## step-2 
 ##### Create React App Typescript
 
 https://github.com/maximilianou/weekly20/commit/04bef818113414125d38774708051f3e985a7878
 
 
-#### step-3
-###### Dockerize Environment, using docker-compose and Makefile to centrilize commands
+## step-3
+##### Dockerize Environment, using docker-compose and Makefile to centrilize commands
 
 https://github.com/maximilianou/weekly20/commit/af722cf39046982c7da7cb3c9536615fc6438132
 
@@ -95,8 +95,8 @@ make test
 
 
 
-#### step-4
-###### Build a React Component in Typescript
+## step-4
+##### Build a React Component in Typescript
 
 https://github.com/maximilianou/weekly20/commit/b9cc74899984e746463befe1cb53ae91fc2fb7b8
 
@@ -205,7 +205,74 @@ export default Counter;
 }
 ```
 
-#### step-5
+## step-5
 
 REFERENCE: https://dev.to/rmiyazaki6499/deploying-a-production-ready-react-express-app-on-aws-62m
+
+https://aws.amazon.com/blogs/containers/deploy-applications-on-amazon-ecs-using-docker-compose/
+
+
+``` 
+
+docker context create ecs myecscontext
+
+curl -L https://raw.githubusercontent.com/docker/compose-cli/main/scripts/install/install_linux.sh | sh
+
+
+maximilianou@instrument:~/projects/weekly20$ docker context create ecs --local-simulation ecsLocal
+Successfully created ecs-local context "ecsLocal"
+
+maximilianou@instrument:~/projects/weekly20$ docker context ls
+NAME                TYPE                DESCRIPTION                               DOCKER ENDPOINT               KUBERNETES ENDPOINT   ORCHESTRATOR
+default *           moby                Current DOCKER_HOST based configuration   unix:///var/run/docker.sock                         swarm
+ecs                 moby                                                          unix:///var/run/docker.sock                         swarm
+ecsLocal            ecs-local           ECS local endpoints 
+```
+### Install AWS Cli
+
+```
+root@instrument:~# curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+root@instrument:~# unzip awscliv2.zip 
+
+root@instrument:~# ./aws/install 
+
+maximilianou@instrument:~/projects/weekly20$ aws --version
+aws-cli/2.1.6 Python/3.7.3 Linux/4.19.0-12-amd64 exe/x86_64.debian.10 prompt/off
+
+```
+
+https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
+
+```
+https://console.aws.amazon.com/iam/home?region=us-east-2#/users
+
+maximilianou@instrument:~/projects/weekly20$ aws configure
+AWS Access Key ID [****************]: 
+AWS Secret Access Key [****************]: 
+Default region name [None]: ****
+Default output format [None]: ****
+
+
+maximilianou@instrument:~/projects/weekly20$ cat ~/.aws/credentials 
+[default]
+aws_access_key_id = A...
+aws_secret_access_key = q...
+
+
+maximilianou@instrument:~/projects/weekly20$ docker context create ecs myecscontext
+? Create a Docker context using: An existing AWS profile
+? Select AWS Profile default
+Successfully created ecs context "myecscontext"
+
+
+maximilianou@instrument:~/projects/weekly20$ docker context ls
+NAME                TYPE                DESCRIPTION                               DOCKER ENDPOINT               KUBERNETES ENDPOINT   ORCHESTRATOR
+default *           moby                Current DOCKER_HOST based configuration   unix:///var/run/docker.sock                         swarm
+ecs                 moby                                                          unix:///var/run/docker.sock                         swarm
+ecsLocal            ecs-local           ECS local endpoints                                                                           
+myecscontext        ecs  
+
+```
+
 
