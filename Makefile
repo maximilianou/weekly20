@@ -21,19 +21,15 @@ test:
 
 vm:
 	docker-compose -f docker-compose.dev.yml up --build
-vm-down:
+stop-vm:
 	docker-compose -f docker-compose.dev.yml down
 
 start-aws:
-	docker context use myecscontext
-	docker compose --file docker-compose.dev.yml up 
-	docker context use default 
+	docker --context myecscontext --file docker-compose.dev.yml compose  up
 stop-aws:
-	docker context use myecscontext
-	docker compose --file docker-compose.dev.yml down 
-	docker context use default 
+	docker --context myecscontext --file docker-compose.dev.yml compose  down
 	
 
 
 # this .PHONY does not check for updated files, just run every command in the target " make ui " will allways run without file checking.
-.PHONY: ui test vm
+.PHONY: ui test vm stop-vm start-aws stop-aws

@@ -7,7 +7,7 @@ services:
       context: ./ui
       dockerfile: Dockerfile.dev
     container_name: cook20_ui
-#    x-aws-logs_retention: 10
+    x-aws-logs_retention: 10
     volumes:
       - ./ui:/ui
       - node_modules:/ui/node_modules
@@ -23,7 +23,7 @@ services:
     build: loadbalancer 
     container_name: cook20_nginx
 #    restart: always
-#    x-aws-logs_retention: 10
+    x-aws-logs_retention: 10
     ports:
       - "8020:80" 
     networks:
