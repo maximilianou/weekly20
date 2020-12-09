@@ -278,3 +278,46 @@ myecscontext        ecs
 https://docs.docker.com/engine/context/ecs-integration/
 
 https://docs.docker.com/compose/compose-file/
+
+
+
+### Functional Programming, fp-ts, safeFetch
+
+```
+npm i fp-ts
+npm i node-fetch @types/node-fetch
+```
+
+```
+maximilianou@instrument:~/projects/weekly20$ cat api/safeFetch.ts 
+``
+
+```ts
+import * as TE from "fp-ts/lib/TaskEither";
+import * as E from "fp-ts/lib/Either";
+const fetch = require('node-fetch');
+
+type User = {
+
+};
+
+export const safeFetch = (
+  url: string,
+  errMessage: string
+): TE.TaskEither> => 
+     TE.tryCatch(
+       () => fetch(url).then( res => res.json()),
+       () => new Error(errMessage)
+     );
+
+safeFetch(
+  "https://jsonplaceholder.typicode.com/users",
+  "failed to fetch users"
+)().then(E.fold(console.error, console.log));
+```
+
+Run code, over command line:
+
+```
+maximilianou@instrument:~/projects/weekly20/api$ ./node_modules/.bin/ts-node safeFetch.ts
+```
