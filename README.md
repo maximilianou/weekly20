@@ -290,7 +290,7 @@ npm i node-fetch @types/node-fetch
 
 ```
 maximilianou@instrument:~/projects/weekly20$ cat api/safeFetch.ts 
-``
+```
 
 ```ts
 import * as TE from "fp-ts/lib/TaskEither";
