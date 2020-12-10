@@ -1,5 +1,7 @@
 # weekly20
 
+--------------------
+
 ## step-1
 ##### Makefile, the tool that make me think like if i were documenting/scripting/automating steps
 
@@ -42,6 +44,7 @@ ui:
 
 https://github.com/maximilianou/weekly20/commit/04bef818113414125d38774708051f3e985a7878
 
+--------------------
 
 ## step-3
 ##### Dockerize Environment, using docker-compose and Makefile to centrilize commands
@@ -93,6 +96,7 @@ maximilianou@instrument:~/projects/weekly20$ docker-compose -f docker-compose.de
 make test
 ```
 
+--------------------
 
 
 ## step-4
@@ -204,6 +208,7 @@ export default Counter;
   ]
 }
 ```
+--------------------
 
 ## step-5
 
@@ -321,9 +326,9 @@ Run code, over command line:
 ```
 maximilianou@instrument:~/projects/weekly20/api$ ./node_modules/.bin/ts-node safeFetch.ts
 ```
+--------------------
 
 ## step-7
---------------------
 
 ### React Types Props React.FC<AppProps>
 
