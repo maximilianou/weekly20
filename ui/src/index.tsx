@@ -8,6 +8,6 @@ ReactDOM.render(
   <React.StrictMode>
     <App  message='Planting Carrot!' img={carrotImg} alt='Carrot Text'/>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.querySelector('#root')
 );
 

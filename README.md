@@ -323,5 +323,49 @@ maximilianou@instrument:~/projects/weekly20/api$ ./node_modules/.bin/ts-node saf
 ```
 
 
+### React Types Props React.FC<AppProps>
 
+AppTypes.ts
+```ts
+export type PropImage = {
+  img: string,
+  alt: string
+}
+export type AppProps = { message: string } & PropImage;
+```
 
+App.tsx
+```tsx
+import React from 'react';
+import Header from './comp/Header';
+import Footer from './comp/Footer';
+import Counter from './comp/Counter';
+import { AppProps } from './types/AppTypes';
+const App: React.FC<AppProps> = 
+        ( { message, img, alt }: AppProps ) =>  
+          <>
+            <Header img={img} alt={alt}></Header>
+            <section>{message}</section>
+            <section><article><Counter  /></article></section>
+            <Footer img={img} alt={alt}></Footer>
+          </>;
+export default App;
+```
+
+Header.tsx
+```tsx
+import React from 'react';
+import { PropImage }  from '../types/AppTypes';
+const Header : React.FC<PropImage> = (props:PropImage)  => {
+    return (
+      <>
+            <header>
+              <img src={props.img} alt={props.alt}/>
+               Carrot
+              <img src={props.img} alt={props.alt}/>
+            </header>
+      </>
+    );
+  }
+  export default Header;
+```

@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './comp/Header';
 import Footer from './comp/Footer';
 import Counter from './comp/Counter';
-import { AppProps} from './types/AppTypes';
+import { AppProps } from './types/AppTypes';
 
 
 

@@ -3,4 +3,3 @@ export type PropImage = {
   alt: string
 }
 export type AppProps = { message: string } & PropImage;
-
