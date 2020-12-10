@@ -321,3 +321,7 @@ Run code, over command line:
 ```
 maximilianou@instrument:~/projects/weekly20/api$ ./node_modules/.bin/ts-node safeFetch.ts
 ```
+
+
+
+

@@ -1,22 +1,18 @@
 import React from 'react';
+import Header from './comp/Header';
+import Footer from './comp/Footer';
 import Counter from './comp/Counter';
-import carrotImg from './img/BySmalllikeTheNounProject.svg';
-type AppProps = { message: string };
+import { AppProps} from './types/AppTypes';
+
+
+
 const App: React.FC<AppProps> = 
-        ( { message }: AppProps ) =>  
+        ( { message, img, alt }: AppProps ) =>  
           <>
-            <header>
-              <img src={carrotImg} alt='carrot'/>
-               Carrot
-              <img src={carrotImg} alt='carrot'/>
-            </header>
+            <Header img={img} alt={alt}></Header>
             <section>{message}</section>
             <section><article><Counter  /></article></section>
-            <footer>
-               <img src={carrotImg} alt='carrot'/>
-               Handmade with Passion! 
-               <img src={carrotImg} alt='carrot'/>
-            </footer>
+            <Footer img={img} alt={alt}></Footer>
           </>;
 
 export default App;
