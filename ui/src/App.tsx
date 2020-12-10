@@ -4,8 +4,6 @@ import Footer from './comp/Footer';
 import Counter from './comp/Counter';
 import { AppProps } from './types/AppTypes';
 
-
-
 const App: React.FC<AppProps> = 
         ( { message, img, alt }: AppProps ) =>  
           <>
