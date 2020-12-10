@@ -19,3 +19,4 @@ safeFetch(
   "https://jsonplaceholder.typicode.com/users",
   "failed to fetch users"
 )().then(E.fold(console.error, console.log));
+// )().then((res) => E.fold( (err) => console.error(err), (success) =>  console.log(success))(res));
