@@ -10,6 +10,6 @@ jobs:
       - name: Build the Stack
         run: docker-compose up -d
       - name: Test cook20_ui
-        run: docker run --network container:cook20_ui appropiate/curl -s --retry 10 --retry-connrefused http://localhost:4220/
+        run: docker run --network container:cook20_ui appropriate/curl -v --retry 10 --retry-connrefused http://localhost:4220/
       - name: Test cook20_nginx
-        run: docker run --network container:cook20_nginx appropiate/curl -s --retry 10 --retry-connrefused http://localhost:8020/
+        run: docker run --network container:cook20_nginx appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8020/
