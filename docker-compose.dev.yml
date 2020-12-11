@@ -1,4 +1,4 @@
-version: "3.8" # specify docker-compose version
+version: "3.9" # specify docker-compose version
 
 # Define the services/containers to be run
 services:
@@ -41,5 +41,4 @@ networks:
   default:
 
 volumes:
-  cook20_data:
   node_modules:

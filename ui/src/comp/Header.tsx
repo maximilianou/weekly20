@@ -5,7 +5,9 @@ const Header : React.FC<PropImage> = ( {img, alt} :PropImage)  => {
       <>
             <header>
               <img src={img} alt={alt}/>
-               Carrot
+               <a href='https://github.com/maximilianou/weekly20' 
+                  target='_blank' 
+                  rel='noreferrer'>Learning Carrot Github</a>
               <img src={img} alt={alt}/>
             </header>
       </>
