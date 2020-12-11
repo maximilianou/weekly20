@@ -209,7 +209,6 @@ export default Counter;
 }
 ```
 --------------------
-
 ## step-5
 
 REFERENCE: https://dev.to/rmiyazaki6499/deploying-a-production-ready-react-express-app-on-aws-62m
@@ -363,16 +362,93 @@ Header.tsx
 ```tsx
 import React from 'react';
 import { PropImage }  from '../types/AppTypes';
-const Header : React.FC<PropImage> = (props:PropImage)  => {
+const Header : React.FC<PropImage> = ({img, alt}:PropImage)  => {
     return (
       <>
             <header>
-              <img src={props.img} alt={props.alt}/>
+              <img src={img} alt={alt}/>
                Carrot
-              <img src={props.img} alt={props.alt}/>
+              <img src={img} alt={alt}/>
             </header>
       </>
     );
   }
   export default Header;
+```
+
+--------------------
+## step-8
+
+```
+maximilianou@instrument:~/projects/weekly20$ docker tag 9f9694c14e84 docker.pkg.github.com/maximilianou/weekly20_cook20_ui/cook20_ui:latest
+```
+
+```
+maximilianou@instrument:~/projects/weekly20$ docker build -t docker.pkg.github.com/maximilianou/weekly20_cook20_ui/cook20:latest ui/
+unable to prepare context: unable to evaluate symlinks in Dockerfile path: lstat /home/maximilianou/projects/weekly20/ui/Dockerfile: no such file or directory
+maximilianou@instrument:~/projects/weekly20$ cp ui/Dockerfile.dev ui/Dockerfile
+maximilianou@instrument:~/projects/weekly20$ docker build -t docker.pkg.github.com/maximilianou/weekly20_cook20_ui/cook20:latest ui/
+
+...
+
+Successfully built 7dad32303b98
+Successfully tagged docker.pkg.github.com/maximilianou/weekly20_cook20_ui/cook20:latest
+
+```
+
+```
+maximilianou@instrument:~/projects/weekly20$ cat ../react-typescript.pem | docker login https://docker.pkg.github.com -u maximilianou --password-stdin
+WARNING! Your password will be stored unencrypted in /home/maximilianou/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+
+```
+
+???
+```
+maximilianou@instrument:~/projects/weekly20$ docker push docker.pkg.github.com/maximilianou/weekly20_cook20_ui/cook20_ui:latest
+The push refers to repository [docker.pkg.github.com/maximilianou/weekly20_cook20_ui/cook20_ui]
+61f9e9a53124: Preparing 
+
+...
+
+3e207b409db3: Waiting 
+unauthorized: Your request could not be authenticated by the GitHub Packages service. Please ensure your access token is valid and has the appropriate scopes configured.
+
+```
+???
+
+
+```
+
+maximilianou@instrument:~/projects/weekly20$ docker run --network container:cook20_nginx appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8020/
+maximilianou@instrument:~/projects/weekly20$ docker run --network container:cook20_ui appropriate/curl -s --retry 10 --retry-connrefused http://localhost:4220/
+maximilianou@instrument:~/projects/weekly20$ 
+
+```
+
+```
+weekly20$ mkdir -p .github/workflows/
+weekly20$ touch .github/workflows/push.yml
+
+```
+
+```
+#.github/workflows/push.yml
+  
+name: Docker Compose Actions Workflow
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: docker-compose up -d
+      - name: Test:cook20_ui
+        run: docker run --network container:cook20_ui appropriate/curl -s --retry 10 --retry-connrefused http://localhost:4220/
+      - name: Test:cook20_nginx
+        run: docker run --network container:cook20_nginx appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8020/
 ```
