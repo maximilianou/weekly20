@@ -447,8 +447,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the stack
         run: docker-compose up -d
-      - name: Test:cook20_ui
-        run: docker run --network container:cook20_ui appropriate/curl -s --retry 10 --retry-connrefused http://localhost:4220/
-      - name: Test:cook20_nginx
-        run: docker run --network container:cook20_nginx appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8020/
+      #- name: Test:cook20_ui
+      #  run: docker run --network container:cook20_ui appropriate/curl -s --retry 10 --retry-connrefused http://localhost:4220/
+      #- nae: Test:cook20_nginx
+      #  ru: docker run --network container:cook20_nginx appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8020/
+```
+
+
+`maximilianou@instrument:~/projects/weekly20$ docker-compose -f docker-compose.yml up --build --remove-orphans
 ```
