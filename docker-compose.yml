@@ -6,12 +6,15 @@ services:
     build: 
       context: ./ui
       dockerfile: Dockerfile
-    command: sh -c "npm run start"
+      target: dev
+    #image: node:lts-alpine
+    #command: sh -c "npm install && npm run start"
+    #working_dir: /ui
     container_name: cook20_ui
     x-aws-logs_retention: 10
     volumes:
-      - ./ui:/ui
       - nodemodules:/ui/node_modules
+      - ./ui:/ui
     ports:
       - "4220:3000" 
       - "49153:49153"

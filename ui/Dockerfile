@@ -10,6 +10,8 @@ RUN npm install && npm audit fix && npm clean-install
 CMD [ "npm", "run", "start" ]
 
 FROM base as prod
+COPY . .
+RUN npm install --production && npm audit fix && npm clean-install
 COPY build build
 RUN npm i serve -g
 CMD [ "serve", "-s", "build" ]
