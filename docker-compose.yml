@@ -5,12 +5,13 @@ services:
   cook20_ui: 
     build: 
       context: ./ui
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
+    command: sh -c "npm run start"
     container_name: cook20_ui
     x-aws-logs_retention: 10
     volumes:
       - ./ui:/ui
-      - node_modules:/ui/node_modules
+      - nodemodules:/ui/node_modules
     ports:
       - "4220:3000" 
       - "49153:49153"
@@ -41,4 +42,4 @@ networks:
   default:
 
 volumes:
-  node_modules:
+  nodemodules:
